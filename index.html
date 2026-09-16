@@ -209,5 +209,10 @@ paintPosition();renderTrades();
   boostInput?.addEventListener('input',()=>{chartBoost=Number(boostInput.value);storage.set('nina-chart-boost',String(chartBoost));paintBoost();});
   paintBoost();
 }
+// Match the token name's weight to the gain/loss text.
+document.querySelector('.name').style.fontWeight='475';
+
+// Keep the current-price endpoint above every chart layer, even during fast moves.
+{const endpoint=$('#endpoint'),paintMarketWithTopEndpoint=paintMarket;paintMarket=function(...args){paintMarketWithTopEndpoint(...args);chartSvg.appendChild(endpoint)};chartSvg.appendChild(endpoint)}
 </script>
 </body></html>
